@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZoneMatch Scanner — NIFTY 500</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <div class="brand">ZONEMATCH <span>SCANNER</span></div>
+    <div class="sub">NIFTY 500 • Fresh Demand & Supply • HTF Reaction • Execution Match</div>
+  </div>
+  <div class="live"><i></i> LIVE FEED</div>
+</header>
+
+<section class="stats">
+  <div><small>TOTAL MATCHES</small><b id="total">0</b></div>
+  <div><small>DEMAND</small><b class="green" id="demand">0</b></div>
+  <div><small>SUPPLY</small><b class="red" id="supply">0</b></div>
+  <div><small>FRESH ZONES</small><b id="fresh">0</b></div>
+</section>
+
+<section class="controls">
+  <div class="group">
+    <label>HIGHER TIME FRAME</label>
+    <div class="pills" id="htf">
+      <button class="active" data-value="YIT">Yearly</button>
+      <button data-value="HYIT">Half-Yearly</button>
+      <button data-value="QIT">Quarterly</button>
+      <button data-value="MIT">Monthly</button>
+      <button data-value="WIT">Weekly</button>
+    </div>
+  </div>
+  <div class="group">
+    <label>SCAN TYPE</label>
+    <div class="pills">
+      <button class="active" id="executionMatch">Execution Match</button>
+      <button id="freshOnly">Fresh Only ✓</button>
+    </div>
+  </div>
+  <div class="group">
+    <label>ZONE TYPE</label>
+    <div class="pills" id="zone">
+      <button class="active" data-zone="ALL">All Zones</button>
+      <button data-zone="DEMAND">Demand</button>
+      <button data-zone="SUPPLY">Supply</button>
+    </div>
+  </div>
+  <div class="group">
+    <label>PATTERN</label>
+    <div class="pills" id="pattern">
+      <button class="active" data-pattern="ALL">All</button>
+      <button data-pattern="RBR">RBR</button>
+      <button data-pattern="RBD">RBD</button>
+      <button data-pattern="DBD">DBD</button>
+      <button data-pattern="DBR">DBR</button>
+    </div>
+  </div>
+  <div class="row">
+    <select id="sort">
+      <option value="score">Score ↓</option>
+      <option value="proximity">Proximity ↑</option>
+      <option value="age">Zone Age ↑</option>
+    </select>
+    <input id="search" placeholder="Search symbol or industry...">
+    <button class="refresh" onclick="scan()">↻ Refresh Scan</button>
+  </div>
+</section>
+
+<div id="providerStatus" class="providerStatus">EXECUTION DATA: checking provider…</div>
+<div id="executionMappingBanner" class="providerStatus ok">YIT → Quarterly • HYIT → Monthly • QIT → Weekly • MIT → Daily • WIT → Daily</div>
+<main>
+  <div class="resultHead">
+    <b>EXECUTION MATCH RESULTS</b>
+    <span id="showing">Showing 0 matches</span>
+  </div>
+  <div id="cards" class="cards"></div>
+</main>
+
+<div id="modal" class="modal hidden">
+  <div class="modalbox">
+    <button class="close" onclick="closeChart()">×</button>
+    <div class="charthead">
+      <div>
+        <h2 id="chartTitle">Combined Chart</h2>
+        <p id="chartMeta"></p>
+      </div>
+      <div class="badges" id="trendBadges"></div>
+    </div>
+    <canvas id="chart" width="1200" height="620"></canvas>
+    <div id="rulePanel" class="rulePanel"></div>
+    <div class="chartInfo">
+      <div><b>HTF</b><span id="htfInfo"></span></div>
+      <div><b>EXECUTION</b><span id="execInfo"></span></div>
+      <div><b>RSI</b><span id="rsiInfo"></span></div>
+      <div><b>MATCH</b><span id="matchInfo"></span></div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
